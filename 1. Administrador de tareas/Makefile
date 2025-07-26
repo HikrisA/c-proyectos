@@ -2,7 +2,7 @@
 TARGET = administrador_tareas
 
 # Archivos fuente
-SRCS = main.c #administrador_tareas.c
+SRCS = main.c administrador_tareas.c utilidades.c
 
 # Archivos objeto
 OBJS = $(SRCS:.c=.o)
@@ -18,7 +18,7 @@ all: $(TARGET)
 
 # Instrucciones de construccion del ejecutable
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
 
 # Instrucciones de compilacion de archivos
 %.o: %.c
