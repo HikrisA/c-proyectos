@@ -16,7 +16,7 @@ int main (){
         printf("\n3. Marcar tarea como completada");
         printf("\n4. Eliminar tarea");
         printf("\n5. Salir");
-        printf("\nOpcion: ");
+        printf("\n\nOpcion: ");
         scanf("%d", &opcion);
         getchar();
         // Switch con funciones

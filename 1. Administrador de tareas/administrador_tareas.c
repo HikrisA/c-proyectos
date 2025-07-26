@@ -13,7 +13,7 @@ void agregar_tarea(){
 
     FILE *archivo = fopen(FILENAME, "ab");
     if(archivo == NULL){
-        printf("\aError al abrir el archivo");
+        printf("\aError al abrir el archivo\n\n");
         return;
     }
 
@@ -47,7 +47,7 @@ void listar_tarea(){
 
     FILE *archivo = fopen(FILENAME, "rb");
     if(archivo == NULL){
-        printf("\aError al abrir el archivo");
+        printf("\aError al abrir el archivo\n\n");
         return;    
     }
 
@@ -66,7 +66,7 @@ void completar_tarea(){
 
     FILE *archivo = fopen(FILENAME, "rb+");
     if(archivo == NULL){
-        printf("\aError al abrir el archivo");
+        printf("\aError al abrir el archivo\n\n");
         return;
     }
 
@@ -95,5 +95,51 @@ void completar_tarea(){
 }
 
 void eliminar_tarea(){
-    ;
+    limpiar_consola();
+    printf("\t.: Eliminar tarea :.\n\n");
+
+    FILE *archivo = fopen(FILENAME, "rb");
+    if(archivo == NULL){
+        printf("\aError al abrir el archivo de tareas\n\n");
+        return;
+    }
+
+    int eleccion, bandera = 0;
+    Tarea tareaTemp;
+
+    printf("Tarea a eliminar: ");
+    scanf("%d", &eleccion);
+    getchar();
+
+    while(fread(&tareaTemp, sizeof(Tarea), 1, archivo) == 1){
+        if(tareaTemp.id == eleccion){
+            bandera = 1;
+            break;
+        }
+    }
+
+    if(bandera == 1){
+
+        rewind(archivo);
+
+        FILE *archivoTemp = fopen("archivoTemporal.bin", "wb");
+        if(archivo == NULL){
+            printf("\aError al abrir el archivo temporal\n\n");
+            return;
+        }
+
+        while(fread(&tareaTemp, sizeof(Tarea), 1, archivo) == 1){
+            if(tareaTemp.id != eleccion)
+                fwrite(&tareaTemp, sizeof(Tarea), 1, archivoTemp);
+        }
+
+        remove(FILENAME);
+        rename("archivoTemporal.bin", FILENAME);
+
+        printf("\nTarea %d eliminada\n\n", eleccion);
+        fclose(archivoTemp);
+    }else{
+        printf("\nTarea %d no encontrada\n\n", eleccion);
+        fclose(archivo);
+    }
 }
