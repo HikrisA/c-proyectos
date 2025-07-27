@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "utilidades.h"
+using namespace std;
 
 void limpiar_consola(){
     #ifdef _WIN32
@@ -14,7 +15,7 @@ void pausar_consola(){
     #ifdef _WIN32
         system("pause");
     #else
-        printf("Presiona ENTER para continuar...");
+        cout<<"Presiona ENTER para continuar...";
         getchar();
     #endif
 }
