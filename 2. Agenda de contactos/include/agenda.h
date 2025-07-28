@@ -6,6 +6,8 @@ class Agenda{
     public:
         Agenda();
         void agregarContacto();
+        void leerArchivo();
+        void buscarContacto();
 };
 
 #endif

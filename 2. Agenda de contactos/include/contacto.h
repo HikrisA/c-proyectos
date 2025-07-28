@@ -16,6 +16,9 @@ class Contacto{
         char direccion[size_dir];
     public:
         Contacto();
+        unsigned int return_id();
+        void modificar_id(int);
         void llenarDatos();
+        void imprimirDatos();
 };
 #endif
