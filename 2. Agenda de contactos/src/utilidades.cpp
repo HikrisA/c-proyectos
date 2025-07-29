@@ -15,7 +15,7 @@ void pausar_consola(){
     #ifdef _WIN32
         system("pause");
     #else
-        cout<<"Presiona ENTER para continuar...";
+        cout << "Presiona ENTER para continuar...";
         getchar();
     #endif
 }

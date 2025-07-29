@@ -4,7 +4,7 @@
 #define size_nom 50
 #define size_ape 50
 #define size_cor 30
-#define size_dir
+#define size_dir 100
 
 class Contacto{
     private:
@@ -17,6 +17,11 @@ class Contacto{
     public:
         Contacto();
         unsigned int return_id();
+        unsigned int return_tel();
+        char* return_name();
+        char* return_apellido();
+        char* return_correo();
+        char* return_direccion();
         void modificar_id(int);
         void llenarDatos();
         void imprimirDatos();
